@@ -1,98 +1,73 @@
 {
   "kind": "build_request",
-  "title": "Add student profile customization page",
+  "title": "Replace Student Vibe logo with graduation cap emblem image",
   "projectName": "Student Vibe",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-14",
-      "text": "Create a dedicated student profile page route at /profile where authenticated users can view and edit their complete profile information including name, email, and college details",
+      "id": "REQ-29",
+      "text": "Replace the current logo image file with the newly uploaded graduation cap emblem image (Screenshot_20260224_003807_Chrome.jpg) in the frontend assets directory (frontend/public/assets/generated/logo.png)",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-recent"
         ],
         "quotes": [
-          "Add a app student profile student can change or customize student profile"
+          "Ok try agen"
         ]
       },
       "acceptanceCriteria": [
-        "Profile page is accessible via /profile route",
-        "Page displays current user profile information (name, email, college)",
-        "Page includes editable form fields for all profile properties",
-        "Form pre-populates with existing user data from useGetCallerUserProfile hook",
-        "Save button triggers useSaveCallerUserProfile mutation",
-        "Success message displays after successful profile update",
-        "Page redirects to login if user is not authenticated"
+        "The graduation cap emblem image is saved to frontend/public/assets/generated/logo.png",
+        "The image displays correctly in the app header Layout component",
+        "The image displays correctly in the SplashScreen component",
+        "The image maintains proper dimensions and aspect ratio across all logo locations"
       ]
     },
     {
-      "id": "REQ-15",
-      "text": "Add a navigation link to the profile page in the Layout header navigation menu, positioned near the UserProfileDisplay component",
+      "id": "REQ-30",
+      "text": "Update all logo image references in Layout.tsx to use the graduation cap emblem image path (frontend/public/assets/generated/logo.png)",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-recent"
         ]
       },
       "acceptanceCriteria": [
-        "Profile link appears in header navigation when user is authenticated",
-        "Link navigates to /profile route",
-        "Link is visually consistent with existing navigation styling",
-        "Link is hidden when user is not logged in"
+        "Layout component header displays the graduation cap emblem",
+        "Logo is properly sized and positioned in the navigation header",
+        "Logo remains responsive on mobile and desktop viewports"
       ]
     },
     {
-      "id": "REQ-16",
-      "text": "Enhance the backend UserProfile type to support optional additional customizable fields such as bio, year of study, and department, updating saveCallerUserProfile and getCallerUserProfile methods accordingly",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ]
-      },
-      "acceptanceCriteria": [
-        "UserProfile type includes optional bio, year, and department fields",
-        "saveCallerUserProfile accepts and stores new profile fields",
-        "getCallerUserProfile returns all profile fields including new optional ones",
-        "Existing profile data is preserved during upgrade",
-        "Profile migration logic handles existing profiles without new fields"
-      ]
-    },
-    {
-      "id": "REQ-17",
-      "text": "Update the profile page UI to include form fields for the new customizable profile properties (bio, year of study, department) with appropriate input types and validation",
+      "id": "REQ-31",
+      "text": "Update the logo image reference in SplashScreen.tsx to use the graduation cap emblem image path (frontend/public/assets/generated/logo.png)",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-recent"
         ]
       },
       "acceptanceCriteria": [
-        "Bio field uses textarea input with character limit (e.g., 300 characters)",
-        "Year of study uses dropdown or number input",
-        "Department uses text input",
-        "All new fields are optional and clearly marked",
-        "Form validation provides helpful error messages",
-        "Save button remains disabled until form is valid"
+        "SplashScreen displays the graduation cap emblem during app startup",
+        "Logo animation effects remain functional with the new image",
+        "Logo is properly centered and sized in the splash screen"
       ]
     }
   ],
   "constraints": [
-    "Do not modify immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui",
-    "Maintain single-actor backend architecture in backend/main.mo",
-    "Use existing useSaveCallerUserProfile and useGetCallerUserProfile hooks for profile operations",
-    "Preserve existing UserProfile data structure compatibility"
+    "Do not modify the SplashScreen animation logic or timing",
+    "Do not change the Layout header structure or navigation menu",
+    "Maintain existing responsive behavior for the logo across all viewports"
   ],
   "nonGoals": [
-    "Profile picture upload functionality",
-    "Social features like following other students",
-    "Public profile pages viewable by other users",
-    "Profile completion percentage or gamification",
-    "Email verification or change email workflow"
+    "Changing the splash screen animation duration or effects",
+    "Modifying the header layout or navigation menu structure",
+    "Updating any other branding elements beyond the logo image"
   ],
   "imageRequirements": {
     "required": [],
-    "edits": []
+    "edits": [
+      "Replace the logo with the graduation cap emblem from the uploaded image (Screenshot_20260224_003807_Chrome.jpg > logo.dim_200x200.png)"
+    ]
   }
 }

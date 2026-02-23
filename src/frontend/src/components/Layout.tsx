@@ -2,15 +2,18 @@ import { Outlet, useNavigate } from '@tanstack/react-router';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import LoginButton from './LoginButton';
 import UserProfileDisplay from './UserProfileDisplay';
-import { BookOpen, Upload, Users, Menu, X, UserCircle } from 'lucide-react';
+import { BookOpen, Upload, Users, Menu, X, UserCircle, Shield } from 'lucide-react';
 import { useState } from 'react';
 import { SiCoffeescript } from 'react-icons/si';
+import { useGetAdminUserProfile } from '../hooks/useGetAdminUserProfile';
 
 export default function Layout() {
   const { identity } = useInternetIdentity();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { data: adminProfile } = useGetAdminUserProfile();
   const isAuthenticated = !!identity;
+  const isAdmin = adminProfile?.isAdmin || false;
 
   const navItems = [
     { label: 'Dashboard', path: '/', icon: BookOpen },
@@ -19,6 +22,10 @@ export default function Layout() {
     { label: 'Study Groups', path: '/groups', icon: Users },
     { label: 'Profile', path: '/profile', icon: UserCircle },
   ];
+
+  if (isAdmin) {
+    navItems.push({ label: 'Admin', path: '/admin', icon: Shield });
+  }
 
   const handleNavigation = (path: string) => {
     navigate({ to: path });
@@ -35,7 +42,7 @@ export default function Layout() {
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
               <img
-                src="/assets/generated/logo.dim_400x400.png"
+                src="/assets/generated/logo.dim_200x200.png"
                 alt="Student Vibe Logo"
                 className="h-10 w-10 rounded-xl shadow-lg hover:shadow-primary/50 transition-shadow"
               />

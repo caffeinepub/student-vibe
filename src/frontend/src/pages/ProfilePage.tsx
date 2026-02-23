@@ -56,6 +56,7 @@ export default function ProfilePage() {
         email: email.trim(),
         college: college.trim(),
         isPremium: userProfile?.isPremium || false,
+        isAdmin: userProfile?.isAdmin || false,
         bio: bio.trim() || undefined,
         yearOfStudy: yearOfStudy.trim() || undefined,
         department: department.trim() || undefined,

@@ -98,6 +98,7 @@ export interface UserProfile {
     isPremium: boolean;
     name: string;
     email: string;
+    isAdmin: boolean;
     department?: string;
     yearOfStudy?: string;
     college: string;
@@ -114,6 +115,8 @@ export interface backendInterface {
     generateQuizFromAI(outcallUrl: string): Promise<string>;
     generateSummaryFromAI(outcallUrl: string): Promise<string>;
     generateVivaFromAI(outcallUrl: string): Promise<string>;
+    getAdminUserProfile(): Promise<UserProfile | null>;
+    getAllUsers(): Promise<Array<UserProfile>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getNote(noteId: string): Promise<Note | null>;
@@ -129,7 +132,10 @@ export interface backendInterface {
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
     saveQuiz(id: string, questions: Array<QuizQuestion>): Promise<void>;
     saveVivaQuestions(subject: string, questions: Array<string>): Promise<void>;
+    searchUsersByEmail(searchTerm: string): Promise<Array<UserProfile>>;
     setStripeConfiguration(config: StripeConfiguration): Promise<void>;
+    setUserAdminStatus(user: Principal, isAdmin: boolean): Promise<void>;
+    setUserPremiumStatus(user: Principal, isPremium: boolean): Promise<void>;
     transform(input: TransformationInput): Promise<TransformationOutput>;
     uploadNote(id: string, metadata: NoteMetadata, blob: ExternalBlob): Promise<void>;
 }

@@ -11,11 +11,9 @@ import Principal "mo:core/Principal";
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
 import MixinStorage "blob-storage/Mixin";
-import Migration "migration";
 
-// We need persistent migration here since callerPrincipalPrefix will be tracked in actor and
-// must not be reset as withValue in persistent actor
-(with migration = Migration.run)
+
+
 actor {
   // Include authorization and storage mixins
   let accessControlState = AccessControl.initState();
@@ -28,6 +26,7 @@ actor {
     email : Text;
     college : Text;
     isPremium : Bool;
+    isAdmin : Bool;
     bio : ?Text;
     yearOfStudy : ?Text;
     department : ?Text;
@@ -102,7 +101,8 @@ actor {
     if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
       Runtime.trap("Unauthorized: Only users can save profiles");
     };
-    userProfiles.add(caller, profile);
+    let actualIsAdmin = AccessControl.isAdmin(accessControlState, caller);
+    userProfiles.add(caller, { profile with isAdmin = actualIsAdmin });
   };
 
   // Helper function to check premium status
@@ -111,6 +111,62 @@ actor {
       case (null) { false };
       case (?profile) { profile.isPremium };
     };
+  };
+
+  // Admin Features
+  public query ({ caller }) func getAdminUserProfile() : async ?UserProfile {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can access this function");
+    };
+    userProfiles.get(caller);
+  };
+
+  public query ({ caller }) func getAllUsers() : async [UserProfile] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can view all users");
+    };
+    userProfiles.values().toArray();
+  };
+
+  public shared ({ caller }) func setUserPremiumStatus(user : Principal, isPremium : Bool) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can update premium status");
+    };
+
+    switch (userProfiles.get(user)) {
+      case (null) { Runtime.trap("User not found") };
+      case (?profile) {
+        userProfiles.add(user, { profile with isPremium });
+      };
+    };
+  };
+
+  public shared ({ caller }) func setUserAdminStatus(user : Principal, isAdmin : Bool) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can update admin status");
+    };
+
+    let newRole : AccessControl.UserRole = if (isAdmin) { #admin } else { #user };
+    AccessControl.assignRole(accessControlState, caller, user, newRole);
+
+    switch (userProfiles.get(user)) {
+      case (null) { Runtime.trap("User not found") };
+      case (?profile) {
+        userProfiles.add(user, { profile with isAdmin });
+      };
+    };
+  };
+
+  public shared ({ caller }) func searchUsersByEmail(searchTerm : Text) : async [UserProfile] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can search users by email");
+    };
+
+    userProfiles.values().toArray().filter(
+      func(profile) {
+        profile.email.contains(#text searchTerm);
+      }
+    );
   };
 
   // Notes Management

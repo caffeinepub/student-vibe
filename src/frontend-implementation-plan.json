@@ -1,66 +1,54 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add student profile customization page",
+  "title": "Replace Student Vibe logo with graduation cap emblem image",
   "requirements": [
     {
-      "id": "REQ-14",
-      "summary": "Create a dedicated student profile page route at /profile where authenticated users can view and edit their complete profile information including name, email, and college details",
+      "id": "REQ-29",
+      "summary": "Replace the current logo image file with the newly uploaded graduation cap emblem image in the frontend assets directory",
       "acceptanceCriteria": [
-        "Profile page is accessible via /profile route",
-        "Page displays current user profile information (name, email, college)",
-        "Page includes editable form fields for all profile properties",
-        "Form pre-populates with existing user data from useGetCallerUserProfile hook",
-        "Save button triggers useSaveCallerUserProfile mutation",
-        "Success message displays after successful profile update",
-        "Page redirects to login if user is not authenticated"
+        "The graduation cap emblem image is saved to frontend/public/assets/generated/logo.png",
+        "The image displays correctly in the app header Layout component",
+        "The image displays correctly in the SplashScreen component",
+        "The image maintains proper dimensions and aspect ratio across all logo locations"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/ProfilePage.tsx",
+          "path": "frontend/public/assets/generated/logo.dim_200x200.png",
           "operation": "create",
-          "description": "Create a new ProfilePage component at /profile route. This page displays the authenticated user's profile information in an editable form. Use useGetCallerUserProfile hook to fetch existing profile data and pre-populate form fields (name, email, college). Use useSaveCallerUserProfile mutation to save changes. Include loading states during data fetch and save operations. Show success message after successful profile update. Redirect to login page if user is not authenticated using useInternetIdentity hook. Use authorization component's authentication checks to ensure only logged-in users can access this page. Style the form consistently with existing app design using Tailwind CSS and shadcn/ui form components."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add a new route for /profile that renders the ProfilePage component. Register this route in the TanStack Router configuration alongside existing routes like /dashboard, /upload-note, etc. Ensure the route is protected and requires authentication by checking user identity state before rendering."
+          "description": "Save the graduation cap emblem image from Screenshot_20260224_003807_Chrome.jpg as logo.dim_200x200.png. This image will be used as the new Student Vibe logo throughout the application, replacing the existing logo image."
         }
       ]
     },
     {
-      "id": "REQ-15",
-      "summary": "Add a navigation link to the profile page in the Layout header navigation menu, positioned near the UserProfileDisplay component",
+      "id": "REQ-30",
+      "summary": "Update all logo image references in Layout.tsx to use the graduation cap emblem image path",
       "acceptanceCriteria": [
-        "Profile link appears in header navigation when user is authenticated",
-        "Link navigates to /profile route",
-        "Link is visually consistent with existing navigation styling",
-        "Link is hidden when user is not logged in"
+        "Layout component header displays the graduation cap emblem",
+        "Logo is properly sized and positioned in the navigation header",
+        "Logo remains responsive on mobile and desktop viewports"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Layout.tsx",
           "operation": "modify",
-          "description": "Add a Profile navigation link in the header navigation menu, positioned near the UserProfileDisplay component. The link should navigate to /profile route using TanStack Router Link component. Conditionally render this link only when user is authenticated (check useInternetIdentity hook's identity state). Style the link consistently with existing navigation items using Tailwind CSS classes. Position the link logically within the navigation structure, potentially between other authenticated-user menu items."
+          "description": "Update the logo image reference in the Layout header to use the graduation cap emblem at frontend/public/assets/generated/logo.dim_200x200.png. Ensure the image src attribute points to the correct path and that the logo maintains proper sizing and positioning in both desktop and mobile navigation headers without modifying the header structure or navigation menu."
         }
       ]
     },
     {
-      "id": "REQ-17",
-      "summary": "Update the profile page UI to include form fields for the new customizable profile properties (bio, year of study, department) with appropriate input types and validation",
+      "id": "REQ-31",
+      "summary": "Update the logo image reference in SplashScreen.tsx to use the graduation cap emblem image path",
       "acceptanceCriteria": [
-        "Bio field uses textarea input with character limit (e.g., 300 characters)",
-        "Year of study uses dropdown or number input",
-        "Department uses text input",
-        "All new fields are optional and clearly marked",
-        "Form validation provides helpful error messages",
-        "Save button remains disabled until form is valid"
+        "SplashScreen displays the graduation cap emblem during app startup",
+        "Logo animation effects remain functional with the new image",
+        "Logo is properly centered and sized in the splash screen"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/ProfilePage.tsx",
+          "path": "frontend/src/components/SplashScreen.tsx",
           "operation": "modify",
-          "description": "Extend the ProfilePage form to include three new optional fields: bio (textarea with 300 character limit and character counter), yearOfStudy (text input or select dropdown with common values like 'First Year', 'Second Year', etc.), and department (text input). All three fields should be clearly marked as optional in the UI. Add client-side validation: bio limited to 300 characters, yearOfStudy and department accept text. Display validation error messages inline near each field. Disable the Save button until the form passes validation. These fields map to the optional bio, yearOfStudy, and department properties in the UserProfile type from the backend interface. Use shadcn/ui form components (Textarea, Input, Label) for consistent styling."
+          "description": "Update the logo image reference in the SplashScreen component to use the graduation cap emblem at frontend/public/assets/generated/logo.dim_200x200.png. Ensure the image src attribute points to the correct path while preserving all existing animation logic, timing, and centering behavior without modifying the animation phases or onComplete callback."
         }
       ]
     }

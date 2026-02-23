@@ -1,14 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Add a student profile customization page where users can view and edit their personal information and academic details.
+**Goal:** Replace the Student Vibe logo with the graduation cap emblem image throughout the application.
 
 **Planned changes:**
-- Create a new /profile route with a dedicated profile page
-- Add navigation link to profile page in the header menu
-- Implement editable form with fields for name, email, college, bio, year of study, and department
-- Enhance backend UserProfile type to support optional bio, year, and department fields
-- Update profile save/get methods to handle new customizable fields
-- Add form validation and success messaging
+- Replace the current logo image file with the graduation cap emblem from the uploaded screenshot
+- Update logo references in the Layout component header
+- Update logo reference in the SplashScreen component
 
-**User-visible outcome:** Students can navigate to their profile page, view their current information, and update their name, email, college details, bio, year of study, and department. Changes are saved and reflected immediately.
+**User-visible outcome:** The Student Vibe application displays the new graduation cap emblem logo in the header navigation and splash screen.

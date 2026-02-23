@@ -53,7 +53,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           
           {/* Logo */}
           <img
-            src="/assets/generated/logo.dim_400x400.png"
+            src="/assets/generated/logo.dim_200x200.png"
             alt="Student Vibe Logo"
             className="relative w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-2xl"
           />

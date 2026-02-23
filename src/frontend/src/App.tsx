@@ -13,6 +13,7 @@ import GroupDetailPage from './pages/GroupDetailPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import PaymentFailurePage from './pages/PaymentFailurePage';
 import ProfilePage from './pages/ProfilePage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 import ProfileSetupModal from './components/ProfileSetupModal';
 import SplashScreen from './components/SplashScreen';
 import { useGetCallerUserProfile } from './hooks/useGetCallerUserProfile';
@@ -75,6 +76,12 @@ const profileRoute = createRoute({
   component: ProfilePage,
 });
 
+const adminRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin',
+  component: AdminDashboardPage,
+});
+
 const paymentSuccessRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/payment-success',
@@ -97,6 +104,7 @@ const routeTree = rootRoute.addChildren([
   groupsRoute,
   groupDetailRoute,
   profileRoute,
+  adminRoute,
   paymentSuccessRoute,
   paymentFailureRoute,
 ]);

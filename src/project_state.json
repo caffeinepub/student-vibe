@@ -1,15 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
+  "projectStateVersion": 15,
   "summary": "Student Vibe - A College Notes Sharing + AI Study Helper web application with premium subscription model",
   "architectural_notes": [
     "Web application built with React frontend",
     "Authentication through Internet Identity (supports Google, Apple, Microsoft)",
     "Payment processing via Stripe API for premium subscriptions",
-    "AI integration for study helper features (summaries, quizzes, viva prep)"
+    "AI integration for study helper features (summaries, quizzes, viva prep)",
+    "Admin system with role-based access control for user management"
   ],
   "known_issues": [],
   "isFixRequest": false,
+  "imageRequirements": "## Edit Images\n- Replace the logo with the graduation cap emblem from the uploaded image (Screenshot_20260224_003807_Chrome.jpg > logo.dim_200x200.png)",
   "existing_features": [
     {
       "id": "feature-implement-user-authentication-using-internet-identity-that-supports-google-apple-and-microsoft-sign-in-options",
@@ -138,6 +140,62 @@
         "REQ-17"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-create-react-query-hooks-usegetadminuserprofile-usegetallusers-usesetuserpremiumstatus-usesetuseradminstatus-usesearchusersbyemail-in-the-frontend-to-interact-with-the-new-admin-backend-methods",
+      "title": "Create React Query hooks (useGetAdminUserProfile, useGetAllUsers, useSetUserPremiumStatus, useSetUserAdminStatus, useSearchUsersByEmail) in the frontend to interact with the new admin backend methods",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-admindashboardpage-component-at-route-admin-that-displays-a-user-management-interface-with-search-user-list-and-action-buttons-for-premium-and-admin-access-control",
+      "title": "Create an AdminDashboardPage component at route /admin that displays a user management interface with search, user list, and action buttons for premium and admin access control",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-admin-link-to-the-layout-navigation-menu-that-routes-to-admin-visible-only-to-users-with-admin-privileges",
+      "title": "Add Admin link to the Layout navigation menu that routes to /admin, visible only to users with admin privileges",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-student-vibe-logo-screenshot-20250223-215353-chrome-jpg-with-the-newly-uploaded-graduation-cap-emblem-image-screenshot-20260224-003807-chrome-jpg-in-all-logo-locations-app-header-layout-component-splash-screen-splashscreen-component-and-any-other-places-where-the-logo-is-displayed",
+      "title": "Replace the current Student Vibe logo (Screenshot_20250223_215353_Chrome.jpg) with the newly uploaded graduation cap emblem image (Screenshot_20260224_003807_Chrome.jpg) in all logo locations: app header (Layout component), splash screen (SplashScreen component), and any other places where the logo is displayed",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-logo-image-file-with-the-newly-uploaded-graduation-cap-emblem-image-screenshot-20260224-003807-chrome-jpg-in-the-frontend-assets-directory-frontend-public-assets-generated-logo-png",
+      "title": "Replace the current logo image file with the newly uploaded graduation cap emblem image (Screenshot_20260224_003807_Chrome.jpg) in the frontend assets directory (frontend/public/assets/generated/logo.png)",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-logo-image-references-in-layout-tsx-to-use-the-graduation-cap-emblem-image-path-frontend-public-assets-generated-logo-png",
+      "title": "Update all logo image references in Layout.tsx to use the graduation cap emblem image path (frontend/public/assets/generated/logo.png)",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-logo-image-reference-in-splashscreen-tsx-to-use-the-graduation-cap-emblem-image-path-frontend-public-assets-generated-logo-png",
+      "title": "Update the logo image reference in SplashScreen.tsx to use the graduation cap emblem image path (frontend/public/assets/generated/logo.png)",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -207,6 +265,74 @@
       "reqIds": [
         "REQ-16"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Build admin system with dashboard to manage users, grant/revoke premium access, search users by email, and assign admin roles",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add an isAdmin boolean field to the UserProfile type in the backend main actor to track admin users",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Create backend method getAdminUserProfile that returns the calling user's profile with admin status verification",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Create backend method getAllUsers that returns a list of all user profiles, restricted to admin users only",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Create backend method setUserPremiumStatus that accepts a principal and boolean, allowing admins to grant or revoke premium access for any user",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Create backend method setUserAdminStatus that accepts a principal and boolean, allowing existing admins to grant or revoke admin privileges for any user",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Create backend method searchUsersByEmail that accepts an email search query string and returns matching user profiles, restricted to admin users only",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Update migration.mo to handle the new isAdmin field when migrating existing UserProfile records, defaulting to false",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Replace logo with user-uploaded image",
+      "reqIds": [],
       "status": "pending"
     }
   ],

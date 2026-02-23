@@ -1,8 +1,8 @@
 {
-  "frontend/src/App.tsx": "Main application component with TanStack Router setup including new /profile route, splash screen integration on startup, all routes configured, and profile setup modal with proper authentication checks.",
-  "frontend/src/components/Layout.tsx": "Responsive layout component with header navigation including new Profile link, mobile menu, tech head circuit brain logo integration, user profile display between nav and login button, and footer with caffeine.ai attribution.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup including new /admin route, splash screen integration, profile setup modal, and all application routes configured.",
+  "frontend/src/components/Layout.tsx": "Responsive layout component with header navigation including conditional Admin link visible only to admin users, mobile menu, graduation cap emblem logo, user profile display, and footer with caffeine.ai attribution.",
   "frontend/src/components/LoginButton.tsx": "Internet Identity login/logout button with loading states and error handling.",
-  "frontend/src/components/ProfileSetupModal.tsx": "Modal for first-time user profile creation with name, email, and college fields.",
+  "frontend/src/components/ProfileSetupModal.tsx": "Modal for first-time user profile creation with name, email, and college fields, now includes isAdmin field set to false for new users.",
   "frontend/src/components/DashboardCard.tsx": "Reusable card component for dashboard quick-access tiles with hover effects and gradient backgrounds.",
   "frontend/src/components/HeroSection.tsx": "Hero banner component displaying generated hero image with gradient overlay and headline text.",
   "frontend/src/components/SubscriptionCard.tsx": "Pricing comparison card showing free vs premium tiers with Stripe checkout integration.",
@@ -28,8 +28,14 @@
   "frontend/src/pages/PaymentFailurePage.tsx": "Payment failure page with retry option and dashboard navigation.",
   "frontend/src/index.css": "Global styles with blue-purple gradient OKLCH color system, soft neon glow effects, floating animations, glassmorphism utilities, and splash screen animation keyframes.",
   "frontend/tailwind.config.js": "Tailwind configuration with extended border radius, custom glow shadows, and floating animation keyframes.",
-  "frontend/src/components/SplashScreen.tsx": "Animated splash screen component that displays the tech head circuit brain logo with fade-in, scale, and fade-out effects over a 2-second duration with gradient background and glow effects.",
+  "frontend/src/components/SplashScreen.tsx": "Animated splash screen component that displays the graduation cap emblem logo with fade-in, scale, and fade-out effects over a 2-second duration with gradient background and glow effects.",
   "frontend/src/components/UserProfileDisplay.tsx": "New component that displays authenticated user's profile information (name, college, premium status) with avatar initials and responsive layout for desktop and mobile.",
-  "frontend/src/pages/ProfilePage.tsx": "Profile customization page with editable form fields for name, email, college, and optional fields (bio with 300 char limit, year of study dropdown, department), includes validation, loading states, and success/error toast notifications.",
-  "frontend/src/main.tsx": "Application entry point with React Query provider, Internet Identity provider, and Toaster component for toast notifications."
+  "frontend/src/pages/ProfilePage.tsx": "Profile customization page with editable form fields for name, email, college, and optional fields (bio, year of study, department), preserves existing isPremium and isAdmin status when updating profile.",
+  "frontend/src/main.tsx": "Application entry point with React Query provider, Internet Identity provider, and Toaster component for toast notifications.",
+  "frontend/src/hooks/useGetAdminUserProfile.ts": "Query hook that fetches the current user's profile with admin status verification using getAdminUserProfile backend method, with proper loading state management similar to useGetCallerUserProfile pattern.",
+  "frontend/src/hooks/useGetAllUsers.ts": "Query hook that fetches all user profiles from the backend getAllUsers method for admin dashboard display.",
+  "frontend/src/hooks/useSetUserPremiumStatus.ts": "Mutation hook that calls setUserPremiumStatus backend method with principal and boolean parameters, invalidating relevant queries on success.",
+  "frontend/src/hooks/useSetUserAdminStatus.ts": "Mutation hook that calls setUserAdminStatus backend method with principal and boolean parameters, invalidating relevant queries on success.",
+  "frontend/src/hooks/useSearchUsersByEmail.ts": "Query hook that calls searchUsersByEmail backend method with debounced search term to avoid excessive backend calls.",
+  "frontend/src/pages/AdminDashboardPage.tsx": "Admin dashboard page with user management interface showing searchable user table with controls to grant/revoke premium access and admin privileges, restricted to admin users only."
 }

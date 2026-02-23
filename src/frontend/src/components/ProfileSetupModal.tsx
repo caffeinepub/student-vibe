@@ -17,6 +17,7 @@ export default function ProfileSetupModal() {
       email: email.trim(),
       college: college.trim(),
       isPremium: false,
+      isAdmin: false,
     });
   };
 

@@ -1,31 +1,29 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T18:41:26.639Z",
+  "generatedAt": "2026-02-23T19:35:40.101Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
+    "total": 3,
     "implemented": 3,
     "items": [
       {
-        "id": "REQ-14",
-        "summary": "Create a dedicated student profile page route at /profile where authenticated users can view and edit their complete profile information including name, email, and college details",
+        "id": "REQ-29",
+        "summary": "Replace the current logo image file with the newly uploaded graduation cap emblem image (Screenshot_20260224_003807_Chrome.jpg) in the frontend assets directory (frontend/public/assets/generated/logo.png)",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/ProfilePage.tsx",
-          "frontend/src/App.tsx"
+          "frontend/public/assets/generated/logo.dim_200x200.png"
         ],
         "matchedFiles": [
-          "frontend/src/pages/ProfilePage.tsx",
-          "frontend/src/App.tsx"
+          "frontend/public/assets/generated/logo.dim_200x200.png"
         ]
       },
       {
-        "id": "REQ-15",
-        "summary": "Add a navigation link to the profile page in the Layout header navigation menu, positioned near the UserProfileDisplay component",
+        "id": "REQ-30",
+        "summary": "Update all logo image references in Layout.tsx to use the graduation cap emblem image path (frontend/public/assets/generated/logo.png)",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/components/Layout.tsx"
@@ -35,39 +33,26 @@
         ]
       },
       {
-        "id": "REQ-16",
-        "summary": "Enhance the backend UserProfile type to support optional additional customizable fields such as bio, year of study, and department, updating saveCallerUserProfile and getCallerUserProfile methods accordingly",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-17",
-        "summary": "Update the profile page UI to include form fields for the new customizable profile properties (bio, year of study, department) with appropriate input types and validation",
+        "id": "REQ-31",
+        "summary": "Update the logo image reference in SplashScreen.tsx to use the graduation cap emblem image path (frontend/public/assets/generated/logo.png)",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/ProfilePage.tsx"
+          "frontend/src/components/SplashScreen.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/ProfilePage.tsx"
+          "frontend/src/components/SplashScreen.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
-    "backend/migration.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
+    "frontend/public/assets/generated/logo.dim_200x200.png",
     "frontend/src/components/Layout.tsx",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/pages/ProfilePage.tsx",
+    "frontend/src/components/SplashScreen.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
