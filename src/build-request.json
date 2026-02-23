@@ -1,0 +1,60 @@
+{
+  "kind": "build_request",
+  "title": "Add user profile display and replace logo with uploaded image",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "text": "Display authenticated user's profile information (name, email, college) in the app header or navigation area, accessible after login",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user"
+        ],
+        "quotes": [
+          "App login profile"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User profile information is visible after successful Internet Identity login",
+        "Profile displays user's name, email, and college from the backend userProfile data",
+        "Profile is accessible from the main navigation or header area",
+        "Profile display works on both desktop and mobile layouts"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Replace the placeholder Student Vibe logo with the uploaded tech head circuit brain logo image (Screenshot_20250223_215353_Chrome.jpg) in the app header, splash screen, and any other logo locations",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user"
+        ],
+        "quotes": [
+          "add this image on logo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The tech head circuit brain logo replaces the current text-based 'Student Vibe' logo in the header",
+        "The logo appears in the SplashScreen component animation",
+        "Logo maintains proper dimensions and aspect ratio across all screen sizes",
+        "Logo is clearly visible against the dark background theme"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify useInternetIdentity.ts, useInternetIdentity.tsx, useActor.ts, main.tsx, or frontend/src/components/ui directory",
+    "Maintain the existing single-actor backend architecture"
+  ],
+  "nonGoals": [
+    "Creating a new profile editing interface or profile page",
+    "Adding new profile fields beyond what exists in the backend",
+    "Modifying the authentication flow or Internet Identity integration"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Tech head profile circuit brain logo with cyan to blue gradient on dark navy background, vector style illustration showing a human head silhouette with connected circuit nodes (logo.dim_400x400.png)"
+    ],
+    "edits": []
+  }
+}

@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 1rem;
+        
+        /* Blue-Purple Gradient Theme - Light Mode */
+        --background: 0.99 0.005 270;
+        --foreground: 0.15 0.02 270;
+        --card: 1 0 0;
+        --card-foreground: 0.15 0.02 270;
+        --popover: 1 0 0;
+        --popover-foreground: 0.15 0.02 270;
+        
+        /* Primary: Deep Purple-Blue */
+        --primary: 0.45 0.18 270;
+        --primary-foreground: 0.99 0 0;
+        
+        /* Secondary: Light Purple */
+        --secondary: 0.95 0.03 280;
+        --secondary-foreground: 0.25 0.08 270;
+        
+        --muted: 0.96 0.01 270;
+        --muted-foreground: 0.50 0.03 270;
+        
+        /* Accent: Vibrant Purple */
+        --accent: 0.92 0.05 275;
+        --accent-foreground: 0.25 0.08 270;
+        
+        --destructive: 0.55 0.22 25;
+        --destructive-foreground: 0.99 0 0;
+        
+        --border: 0.90 0.01 270;
+        --input: 0.90 0.01 270;
+        --ring: 0.45 0.18 270;
+        
+        /* Chart Colors - Purple-Blue Spectrum */
+        --chart-1: 0.55 0.20 260;
+        --chart-2: 0.60 0.18 240;
+        --chart-3: 0.50 0.22 280;
+        --chart-4: 0.65 0.16 250;
+        --chart-5: 0.58 0.19 270;
+    }
+
+    .dark {
+        /* Dark Mode - Enhanced Purple-Blue Theme */
+        --background: 0.12 0.02 270;
+        --foreground: 0.95 0.01 270;
+        --card: 0.18 0.03 270;
+        --card-foreground: 0.95 0.01 270;
+        --popover: 0.15 0.03 270;
+        --popover-foreground: 0.95 0.01 270;
+        
+        /* Primary: Bright Purple-Blue */
+        --primary: 0.65 0.22 265;
+        --primary-foreground: 0.99 0 0;
+        
+        /* Secondary: Deep Purple */
+        --secondary: 0.25 0.08 275;
+        --secondary-foreground: 0.95 0.01 270;
+        
+        --muted: 0.22 0.04 270;
+        --muted-foreground: 0.65 0.03 270;
+        
+        /* Accent: Vibrant Purple */
+        --accent: 0.35 0.12 270;
+        --accent-foreground: 0.95 0.01 270;
+        
+        --destructive: 0.60 0.24 25;
+        --destructive-foreground: 0.12 0.02 270;
+        
+        --border: 0.25 0.04 270;
+        --input: 0.25 0.04 270;
+        --ring: 0.55 0.18 265;
+        
+        /* Chart Colors - Bright Purple-Blue Spectrum */
+        --chart-1: 0.60 0.24 260;
+        --chart-2: 0.65 0.20 240;
+        --chart-3: 0.55 0.26 280;
+        --chart-4: 0.70 0.18 250;
+        --chart-5: 0.62 0.22 270;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+}
+
+@layer utilities {
+    /* Soft Neon Glow Effects */
+    .glow-primary {
+        box-shadow: 0 0 20px oklch(var(--primary) / 0.3),
+                    0 0 40px oklch(var(--primary) / 0.2);
+    }
+    
+    .glow-primary-lg {
+        box-shadow: 0 0 30px oklch(var(--primary) / 0.4),
+                    0 0 60px oklch(var(--primary) / 0.3),
+                    0 0 90px oklch(var(--primary) / 0.2);
+    }
+    
+    /* Floating Animation */
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Gradient Text */
+    .gradient-text {
+        background: linear-gradient(135deg, 
+            oklch(var(--primary)), 
+            oklch(var(--chart-1)), 
+            oklch(var(--chart-2)));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    /* Glassmorphism */
+    .glass {
+        background: oklch(var(--background) / 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    /* Splash Screen Animations */
+    @keyframes splash-fade-in {
+        from {
+            opacity: 0;
+            transform: scale(0.75);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes splash-fade-out {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+    }
+    
+    .duration-800 {
+        transition-duration: 800ms;
+    }
+}

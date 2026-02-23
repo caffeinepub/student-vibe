@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Student Vibe - A College Notes Sharing + AI Study Helper web application with premium subscription model",
+  "architectural_notes": [
+    "Web application built with React frontend",
+    "Authentication through Internet Identity (supports Google, Apple, Microsoft)",
+    "Payment processing via Stripe API for premium subscriptions",
+    "AI integration for study helper features (summaries, quizzes, viva prep)"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Tech head profile circuit brain logo with cyan to blue gradient on dark navy background, vector style illustration showing a human head silhouette with connected circuit nodes (logo.dim_400x400.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-user-authentication-using-internet-identity-that-supports-google-apple-and-microsoft-sign-in-options",
+      "title": "Implement user authentication using Internet Identity that supports Google, Apple, and Microsoft sign-in options",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-notes-upload-functionality-allowing-students-to-upload-college-notes-with-metadata-subject-topic-semester-college",
+      "title": "Create notes upload functionality allowing students to upload college notes with metadata (subject, topic, semester, college)",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-notes-browsing-and-discovery-interface-where-students-can-search-and-filter-shared-notes-by-subject-topic-semester-and-college",
+      "title": "Build notes browsing and discovery interface where students can search and filter shared notes by subject, topic, semester, and college",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-ai-summary-generation-feature-that-creates-concise-summaries-from-uploaded-notes-content",
+      "title": "Implement AI summary generation feature that creates concise summaries from uploaded notes content",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-quiz-generator-that-automatically-creates-multiple-choice-and-short-answer-questions-based-on-notes-content",
+      "title": "Build quiz generator that automatically creates multiple-choice and short-answer questions based on notes content",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-viva-questions-feature-that-generates-oral-exam-preparation-questions-from-study-materials",
+      "title": "Create viva questions feature that generates oral exam preparation questions from study materials",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-premium-subscription-system-with-stripe-payment-integration-starting-at-69-unlocking-advanced-ai-features-and-unlimited-uploads",
+      "title": "Implement premium subscription system with Stripe payment integration starting at ₹69, unlocking advanced AI features and unlimited uploads",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-study-group-features-enabling-students-to-create-collaborative-study-groups-share-notes-within-groups-and-discuss-topics",
+      "title": "Build study group features enabling students to create collaborative study groups, share notes within groups, and discuss topics",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-and-implement-a-modern-student-friendly-ui-with-blue-purple-gradient-theme-rounded-cards-clean-typography-and-intuitive-navigation-optimized-for-both-desktop-and-mobile-browsers",
+      "title": "Design and implement a modern, student-friendly UI with blue-purple gradient theme, rounded cards, clean typography, and intuitive navigation optimized for both desktop and mobile browsers",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-cohesive-visual-theme-with-a-futuristic-edtech-aesthetic-soft-neon-gradient-lighting-floating-ui-cards-modern-typography-and-a-vibrant-yet-minimal-design-language-that-feels-professional-and-student-oriented",
+      "title": "Create a cohesive visual theme with a futuristic EdTech aesthetic: soft neon gradient lighting, floating UI cards, modern typography, and a vibrant yet minimal design language that feels professional and student-oriented",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-animated-splash-screen-that-displays-on-app-startup-with-the-student-vibe-logo-using-css-animations-or-react-animation-libraries-the-animation-should-play-once-when-the-app-loads-then-fade-out-to-reveal-the-main-application-interface",
+      "title": "Create an animated splash screen that displays on app startup with the Student Vibe logo, using CSS animations or React animation libraries. The animation should play once when the app loads, then fade out to reveal the main application interface.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-authenticated-user-s-profile-information-name-email-college-in-the-app-header-or-navigation-area-accessible-after-login",
+      "title": "Display authenticated user's profile information (name, email, college) in the app header or navigation area, accessible after login",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-placeholder-student-vibe-logo-with-the-uploaded-tech-head-circuit-brain-logo-image-screenshot-20250223-215353-chrome-jpg-in-the-app-header-splash-screen-and-any-other-logo-locations",
+      "title": "Replace the placeholder Student Vibe logo with the uploaded tech head circuit brain logo image (Screenshot_20250223_215353_Chrome.jpg) in the app header, splash screen, and any other logo locations",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "College notes upload and sharing functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "AI-powered study features (summaries, quiz generation, viva questions)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "User authentication via Internet Identity with Google/Apple/Microsoft sign-in support",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Premium subscription integration with Stripe starting at ₹69",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Modern React UI with blue-purple gradient theme and clean student-friendly design",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Student group features for collaborative study",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add animated logo on app startup/splash screen",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add user profile functionality to app login",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Replace placeholder logo with user-provided image",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Student Vibe",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

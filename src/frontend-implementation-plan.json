@@ -1,0 +1,51 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add user profile display and replace logo with uploaded image",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "summary": "Display authenticated user's profile information in the app header",
+      "acceptanceCriteria": [
+        "User profile information is visible after successful Internet Identity login",
+        "Profile displays user's name, email, and college from the backend userProfile data",
+        "Profile is accessible from the main navigation or header area",
+        "Profile display works on both desktop and mobile layouts"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/UserProfileDisplay.tsx",
+          "operation": "create",
+          "description": "Create a new component that displays the authenticated user's profile information (name, email, college) with responsive layout for desktop and mobile. Use the useGetCallerUserProfile hook to fetch profile data and display it when the user is authenticated. Include loading and error states. Style with Tailwind classes to match the existing dark theme with gradient accents."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Import and integrate the UserProfileDisplay component into the header navigation area, positioned between the navigation menu and the LoginButton. Ensure it only renders when the user is authenticated. Add responsive styling so the profile displays appropriately on both desktop (inline with nav) and mobile (within the mobile menu when expanded)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Replace placeholder Student Vibe logo with tech head circuit brain logo image",
+      "acceptanceCriteria": [
+        "The tech head circuit brain logo replaces the current text-based 'Student Vibe' logo in the header",
+        "The logo appears in the SplashScreen component animation",
+        "Logo maintains proper dimensions and aspect ratio across all screen sizes",
+        "Logo is clearly visible against the dark background theme"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Replace the text-based 'Student Vibe' logo in the header with an img element referencing the generated logo at frontend/public/assets/generated/logo.dim_400x400.png. Set appropriate width/height attributes (e.g., 40px height) and add alt text 'Student Vibe Logo'. Ensure the logo is clickable and navigates to the dashboard. Apply Tailwind classes for responsive sizing and proper spacing."
+        },
+        {
+          "path": "frontend/src/components/SplashScreen.tsx",
+          "operation": "modify",
+          "description": "Replace the text-based 'Student Vibe' logo in the splash screen animation with an img element referencing the generated logo at frontend/public/assets/generated/logo.dim_400x400.png. Adjust the animation styling to accommodate the image logo while maintaining the existing fade-in/hold/fade-out timing. Set appropriate dimensions (e.g., 80-120px) for the splash screen context and ensure the logo is centered and clearly visible against the dark background."
+        }
+      ]
+    }
+  ]
+}

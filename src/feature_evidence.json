@@ -1,0 +1,51 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-display-authenticated-user-s-profile-information-name-email-college-in-the-app-header-or-navigation-area-accessible-after-login",
+      "featureTitle": "Display authenticated user's profile information (name, email, college) in the app header or navigation area, accessible after login",
+      "files": [
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/components/UserProfileDisplay.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-replace-the-placeholder-student-vibe-logo-with-the-uploaded-tech-head-circuit-brain-logo-image-screenshot-20250223-215353-chrome-jpg-in-the-app-header-splash-screen-and-any-other-logo-locations",
+      "featureTitle": "Replace the placeholder Student Vibe logo with the uploaded tech head circuit brain logo image (Screenshot_20250223_215353_Chrome.jpg) in the app header, splash screen, and any other logo locations",
+      "files": [
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/components/SplashScreen.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
