@@ -69,9 +69,12 @@ export interface TransformationOutput {
   'headers' : Array<http_header>,
 }
 export interface UserProfile {
+  'bio' : [] | [string],
   'isPremium' : boolean,
   'name' : string,
   'email' : string,
+  'department' : [] | [string],
+  'yearOfStudy' : [] | [string],
   'college' : string,
 }
 export type UserRole = { 'admin' : null } |

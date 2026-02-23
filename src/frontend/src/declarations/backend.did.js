@@ -41,9 +41,12 @@ export const StudyGroup = IDL.Record({
   'description' : IDL.Text,
 });
 export const UserProfile = IDL.Record({
+  'bio' : IDL.Opt(IDL.Text),
   'isPremium' : IDL.Bool,
   'name' : IDL.Text,
   'email' : IDL.Text,
+  'department' : IDL.Opt(IDL.Text),
+  'yearOfStudy' : IDL.Opt(IDL.Text),
   'college' : IDL.Text,
 });
 export const NoteMetadata = IDL.Record({
@@ -212,9 +215,12 @@ export const idlFactory = ({ IDL }) => {
     'description' : IDL.Text,
   });
   const UserProfile = IDL.Record({
+    'bio' : IDL.Opt(IDL.Text),
     'isPremium' : IDL.Bool,
     'name' : IDL.Text,
     'email' : IDL.Text,
+    'department' : IDL.Opt(IDL.Text),
+    'yearOfStudy' : IDL.Opt(IDL.Text),
     'college' : IDL.Text,
   });
   const NoteMetadata = IDL.Record({

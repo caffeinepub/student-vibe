@@ -1,52 +1,73 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T18:33:54.589Z",
+  "generatedAt": "2026-02-23T18:41:26.639Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 4,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-12",
-        "summary": "Display authenticated user's profile information (name, email, college) in the app header or navigation area, accessible after login",
+        "id": "REQ-14",
+        "summary": "Create a dedicated student profile page route at /profile where authenticated users can view and edit their complete profile information including name, email, and college details",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/UserProfileDisplay.tsx",
+          "frontend/src/pages/ProfilePage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/ProfilePage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Add a navigation link to the profile page in the Layout header navigation menu, positioned near the UserProfileDisplay component",
+        "status": "implemented",
+        "plannedFiles": [
           "frontend/src/components/Layout.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/UserProfileDisplay.tsx",
           "frontend/src/components/Layout.tsx"
         ]
       },
       {
-        "id": "REQ-13",
-        "summary": "Replace the placeholder Student Vibe logo with the uploaded tech head circuit brain logo image (Screenshot_20250223_215353_Chrome.jpg) in the app header, splash screen, and any other logo locations",
+        "id": "REQ-16",
+        "summary": "Enhance the backend UserProfile type to support optional additional customizable fields such as bio, year of study, and department, updating saveCallerUserProfile and getCallerUserProfile methods accordingly",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Update the profile page UI to include form fields for the new customizable profile properties (bio, year of study, department) with appropriate input types and validation",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/Layout.tsx",
-          "frontend/src/components/SplashScreen.tsx"
+          "frontend/src/pages/ProfilePage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/Layout.tsx",
-          "frontend/src/components/SplashScreen.tsx"
+          "frontend/src/pages/ProfilePage.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/logo.dim_400x400.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
     "frontend/src/components/Layout.tsx",
-    "frontend/src/components/SplashScreen.tsx",
-    "frontend/src/components/UserProfileDisplay.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/pages/ProfilePage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

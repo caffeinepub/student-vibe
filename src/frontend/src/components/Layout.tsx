@@ -2,7 +2,7 @@ import { Outlet, useNavigate } from '@tanstack/react-router';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import LoginButton from './LoginButton';
 import UserProfileDisplay from './UserProfileDisplay';
-import { BookOpen, Upload, Users, Menu, X } from 'lucide-react';
+import { BookOpen, Upload, Users, Menu, X, UserCircle } from 'lucide-react';
 import { useState } from 'react';
 import { SiCoffeescript } from 'react-icons/si';
 
@@ -17,6 +17,7 @@ export default function Layout() {
     { label: 'Upload Notes', path: '/upload', icon: Upload },
     { label: 'Browse Notes', path: '/browse', icon: BookOpen },
     { label: 'Study Groups', path: '/groups', icon: Users },
+    { label: 'Profile', path: '/profile', icon: UserCircle },
   ];
 
   const handleNavigation = (path: string) => {

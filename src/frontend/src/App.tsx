@@ -12,6 +12,7 @@ import StudyGroupsPage from './pages/StudyGroupsPage';
 import GroupDetailPage from './pages/GroupDetailPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import PaymentFailurePage from './pages/PaymentFailurePage';
+import ProfilePage from './pages/ProfilePage';
 import ProfileSetupModal from './components/ProfileSetupModal';
 import SplashScreen from './components/SplashScreen';
 import { useGetCallerUserProfile } from './hooks/useGetCallerUserProfile';
@@ -68,6 +69,12 @@ const groupDetailRoute = createRoute({
   component: GroupDetailPage,
 });
 
+const profileRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/profile',
+  component: ProfilePage,
+});
+
 const paymentSuccessRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/payment-success',
@@ -89,6 +96,7 @@ const routeTree = rootRoute.addChildren([
   vivaRoute,
   groupsRoute,
   groupDetailRoute,
+  profileRoute,
   paymentSuccessRoute,
   paymentFailureRoute,
 ]);

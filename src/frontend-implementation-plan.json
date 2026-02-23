@@ -1,49 +1,66 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add user profile display and replace logo with uploaded image",
+  "title": "Add student profile customization page",
   "requirements": [
     {
-      "id": "REQ-12",
-      "summary": "Display authenticated user's profile information in the app header",
+      "id": "REQ-14",
+      "summary": "Create a dedicated student profile page route at /profile where authenticated users can view and edit their complete profile information including name, email, and college details",
       "acceptanceCriteria": [
-        "User profile information is visible after successful Internet Identity login",
-        "Profile displays user's name, email, and college from the backend userProfile data",
-        "Profile is accessible from the main navigation or header area",
-        "Profile display works on both desktop and mobile layouts"
+        "Profile page is accessible via /profile route",
+        "Page displays current user profile information (name, email, college)",
+        "Page includes editable form fields for all profile properties",
+        "Form pre-populates with existing user data from useGetCallerUserProfile hook",
+        "Save button triggers useSaveCallerUserProfile mutation",
+        "Success message displays after successful profile update",
+        "Page redirects to login if user is not authenticated"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/UserProfileDisplay.tsx",
+          "path": "frontend/src/pages/ProfilePage.tsx",
           "operation": "create",
-          "description": "Create a new component that displays the authenticated user's profile information (name, email, college) with responsive layout for desktop and mobile. Use the useGetCallerUserProfile hook to fetch profile data and display it when the user is authenticated. Include loading and error states. Style with Tailwind classes to match the existing dark theme with gradient accents."
+          "description": "Create a new ProfilePage component at /profile route. This page displays the authenticated user's profile information in an editable form. Use useGetCallerUserProfile hook to fetch existing profile data and pre-populate form fields (name, email, college). Use useSaveCallerUserProfile mutation to save changes. Include loading states during data fetch and save operations. Show success message after successful profile update. Redirect to login page if user is not authenticated using useInternetIdentity hook. Use authorization component's authentication checks to ensure only logged-in users can access this page. Style the form consistently with existing app design using Tailwind CSS and shadcn/ui form components."
         },
         {
-          "path": "frontend/src/components/Layout.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Import and integrate the UserProfileDisplay component into the header navigation area, positioned between the navigation menu and the LoginButton. Ensure it only renders when the user is authenticated. Add responsive styling so the profile displays appropriately on both desktop (inline with nav) and mobile (within the mobile menu when expanded)."
+          "description": "Add a new route for /profile that renders the ProfilePage component. Register this route in the TanStack Router configuration alongside existing routes like /dashboard, /upload-note, etc. Ensure the route is protected and requires authentication by checking user identity state before rendering."
         }
       ]
     },
     {
-      "id": "REQ-13",
-      "summary": "Replace placeholder Student Vibe logo with tech head circuit brain logo image",
+      "id": "REQ-15",
+      "summary": "Add a navigation link to the profile page in the Layout header navigation menu, positioned near the UserProfileDisplay component",
       "acceptanceCriteria": [
-        "The tech head circuit brain logo replaces the current text-based 'Student Vibe' logo in the header",
-        "The logo appears in the SplashScreen component animation",
-        "Logo maintains proper dimensions and aspect ratio across all screen sizes",
-        "Logo is clearly visible against the dark background theme"
+        "Profile link appears in header navigation when user is authenticated",
+        "Link navigates to /profile route",
+        "Link is visually consistent with existing navigation styling",
+        "Link is hidden when user is not logged in"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Layout.tsx",
           "operation": "modify",
-          "description": "Replace the text-based 'Student Vibe' logo in the header with an img element referencing the generated logo at frontend/public/assets/generated/logo.dim_400x400.png. Set appropriate width/height attributes (e.g., 40px height) and add alt text 'Student Vibe Logo'. Ensure the logo is clickable and navigates to the dashboard. Apply Tailwind classes for responsive sizing and proper spacing."
-        },
+          "description": "Add a Profile navigation link in the header navigation menu, positioned near the UserProfileDisplay component. The link should navigate to /profile route using TanStack Router Link component. Conditionally render this link only when user is authenticated (check useInternetIdentity hook's identity state). Style the link consistently with existing navigation items using Tailwind CSS classes. Position the link logically within the navigation structure, potentially between other authenticated-user menu items."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Update the profile page UI to include form fields for the new customizable profile properties (bio, year of study, department) with appropriate input types and validation",
+      "acceptanceCriteria": [
+        "Bio field uses textarea input with character limit (e.g., 300 characters)",
+        "Year of study uses dropdown or number input",
+        "Department uses text input",
+        "All new fields are optional and clearly marked",
+        "Form validation provides helpful error messages",
+        "Save button remains disabled until form is valid"
+      ],
+      "file_operations": [
         {
-          "path": "frontend/src/components/SplashScreen.tsx",
+          "path": "frontend/src/pages/ProfilePage.tsx",
           "operation": "modify",
-          "description": "Replace the text-based 'Student Vibe' logo in the splash screen animation with an img element referencing the generated logo at frontend/public/assets/generated/logo.dim_400x400.png. Adjust the animation styling to accommodate the image logo while maintaining the existing fade-in/hold/fade-out timing. Set appropriate dimensions (e.g., 80-120px) for the splash screen context and ensure the logo is centered and clearly visible against the dark background."
+          "description": "Extend the ProfilePage form to include three new optional fields: bio (textarea with 300 character limit and character counter), yearOfStudy (text input or select dropdown with common values like 'First Year', 'Second Year', etc.), and department (text input). All three fields should be clearly marked as optional in the UI. Add client-side validation: bio limited to 300 characters, yearOfStudy and department accept text. Display validation error messages inline near each field. Disable the Save button until the form passes validation. These fields map to the optional bio, yearOfStudy, and department properties in the UserProfile type from the backend interface. Use shadcn/ui form components (Textarea, Input, Label) for consistent styling."
         }
       ]
     }

@@ -11,7 +11,11 @@ import Principal "mo:core/Principal";
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
 import MixinStorage "blob-storage/Mixin";
+import Migration "migration";
 
+// We need persistent migration here since callerPrincipalPrefix will be tracked in actor and
+// must not be reset as withValue in persistent actor
+(with migration = Migration.run)
 actor {
   // Include authorization and storage mixins
   let accessControlState = AccessControl.initState();
@@ -24,6 +28,9 @@ actor {
     email : Text;
     college : Text;
     isPremium : Bool;
+    bio : ?Text;
+    yearOfStudy : ?Text;
+    department : ?Text;
   };
 
   public type NoteMetadata = {
@@ -187,6 +194,9 @@ actor {
 
   // AI Features - Outcall Handlers (to be implemented on client-side)
   public query ({ caller }) func transform(input : OutCall.TransformationInput) : async OutCall.TransformationOutput {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only registered users can use transformation functions");
+    };
     OutCall.transform(input);
   };
 
@@ -272,6 +282,9 @@ actor {
   var stripeConfiguration : ?Stripe.StripeConfiguration = null;
 
   public query ({ caller }) func isStripeConfigured() : async Bool {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only registered users can check Stripe configuration");
+    };
     stripeConfiguration != null;
   };
 
@@ -303,4 +316,3 @@ actor {
     await Stripe.getSessionStatus(getStripeConfiguration(), sessionId, transform);
   };
 };
-

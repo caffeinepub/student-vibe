@@ -1,11 +1,14 @@
 # Specification
 
 ## Summary
-**Goal:** Display authenticated user profile information in the header and replace the Student Vibe logo with the uploaded tech head circuit brain logo.
+**Goal:** Add a student profile customization page where users can view and edit their personal information and academic details.
 
 **Planned changes:**
-- Add user profile display (name, email, college) to the app header/navigation after login
-- Replace placeholder Student Vibe logo with tech head circuit brain logo in header and splash screen
-- Ensure logo maintains proper dimensions and visibility on dark background
+- Create a new /profile route with a dedicated profile page
+- Add navigation link to profile page in the header menu
+- Implement editable form with fields for name, email, college, bio, year of study, and department
+- Enhance backend UserProfile type to support optional bio, year, and department fields
+- Update profile save/get methods to handle new customizable fields
+- Add form validation and success messaging
 
-**User-visible outcome:** After logging in, users will see their profile information displayed in the header, and the app will feature the new tech head circuit brain logo throughout the interface.
+**User-visible outcome:** Students can navigate to their profile page, view their current information, and update their name, email, college details, bio, year of study, and department. Changes are saved and reflected immediately.

@@ -1,6 +1,6 @@
 {
-  "frontend/src/App.tsx": "Main application component with TanStack Router setup, splash screen integration on startup, all routes configured, and profile setup modal with proper authentication checks.",
-  "frontend/src/components/Layout.tsx": "Responsive layout component with header navigation, mobile menu, tech head circuit brain logo integration, user profile display between nav and login button, and footer with caffeine.ai attribution.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup including new /profile route, splash screen integration on startup, all routes configured, and profile setup modal with proper authentication checks.",
+  "frontend/src/components/Layout.tsx": "Responsive layout component with header navigation including new Profile link, mobile menu, tech head circuit brain logo integration, user profile display between nav and login button, and footer with caffeine.ai attribution.",
   "frontend/src/components/LoginButton.tsx": "Internet Identity login/logout button with loading states and error handling.",
   "frontend/src/components/ProfileSetupModal.tsx": "Modal for first-time user profile creation with name, email, and college fields.",
   "frontend/src/components/DashboardCard.tsx": "Reusable card component for dashboard quick-access tiles with hover effects and gradient backgrounds.",
@@ -29,5 +29,7 @@
   "frontend/src/index.css": "Global styles with blue-purple gradient OKLCH color system, soft neon glow effects, floating animations, glassmorphism utilities, and splash screen animation keyframes.",
   "frontend/tailwind.config.js": "Tailwind configuration with extended border radius, custom glow shadows, and floating animation keyframes.",
   "frontend/src/components/SplashScreen.tsx": "Animated splash screen component that displays the tech head circuit brain logo with fade-in, scale, and fade-out effects over a 2-second duration with gradient background and glow effects.",
-  "frontend/src/components/UserProfileDisplay.tsx": "New component that displays authenticated user's profile information (name, college, premium status) with avatar initials and responsive layout for desktop and mobile."
+  "frontend/src/components/UserProfileDisplay.tsx": "New component that displays authenticated user's profile information (name, college, premium status) with avatar initials and responsive layout for desktop and mobile.",
+  "frontend/src/pages/ProfilePage.tsx": "Profile customization page with editable form fields for name, email, college, and optional fields (bio with 300 char limit, year of study dropdown, department), includes validation, loading states, and success/error toast notifications.",
+  "frontend/src/main.tsx": "Application entry point with React Query provider, Internet Identity provider, and Toaster component for toast notifications."
 }

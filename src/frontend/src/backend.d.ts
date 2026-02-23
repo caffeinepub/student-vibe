@@ -94,9 +94,12 @@ export interface StripeConfiguration {
     secretKey: string;
 }
 export interface UserProfile {
+    bio?: string;
     isPremium: boolean;
     name: string;
     email: string;
+    department?: string;
+    yearOfStudy?: string;
     college: string;
 }
 export enum UserRole {
