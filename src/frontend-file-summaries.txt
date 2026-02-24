@@ -1,6 +1,6 @@
 {
-  "frontend/src/App.tsx": "Main application component with TanStack Router setup including new /admin route, splash screen integration, profile setup modal, and all application routes configured.",
-  "frontend/src/components/Layout.tsx": "Responsive layout component with header navigation including conditional Admin link visible only to admin users, mobile menu, graduation cap emblem logo, user profile display, and footer with caffeine.ai attribution.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup including the /admin route properly registered in the routeTree, splash screen integration, profile setup modal, and all application routes configured with AdminDashboardPage imported and wired correctly.",
+  "frontend/src/components/Layout.tsx": "Responsive layout component with header navigation including conditional Admin link visible only to admin users (using useGetCallerUserProfile), mobile menu, graduation cap emblem logo, user profile display, and footer with caffeine.ai attribution.",
   "frontend/src/components/LoginButton.tsx": "Internet Identity login/logout button with loading states and error handling.",
   "frontend/src/components/ProfileSetupModal.tsx": "Modal for first-time user profile creation with name, email, and college fields, now includes isAdmin field set to false for new users.",
   "frontend/src/components/DashboardCard.tsx": "Reusable card component for dashboard quick-access tiles with hover effects and gradient backgrounds.",
@@ -37,5 +37,5 @@
   "frontend/src/hooks/useSetUserPremiumStatus.ts": "Mutation hook that calls setUserPremiumStatus backend method with principal and boolean parameters, invalidating relevant queries on success.",
   "frontend/src/hooks/useSetUserAdminStatus.ts": "Mutation hook that calls setUserAdminStatus backend method with principal and boolean parameters, invalidating relevant queries on success.",
   "frontend/src/hooks/useSearchUsersByEmail.ts": "Query hook that calls searchUsersByEmail backend method with debounced search term to avoid excessive backend calls.",
-  "frontend/src/pages/AdminDashboardPage.tsx": "Admin dashboard page with user management interface showing searchable user table with controls to grant/revoke premium access and admin privileges, restricted to admin users only."
+  "frontend/src/pages/AdminDashboardPage.tsx": "Admin dashboard page with user management interface showing searchable user table with controls to grant/revoke premium access and admin privileges, now properly using useGetAdminUserProfile hook for authorization with enhanced loading, error, and access denied states."
 }

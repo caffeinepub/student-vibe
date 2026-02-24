@@ -12,8 +12,6 @@ import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
 import MixinStorage "blob-storage/Mixin";
 
-
-
 actor {
   // Include authorization and storage mixins
   let accessControlState = AccessControl.initState();

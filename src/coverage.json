@@ -1,47 +1,50 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T19:35:40.101Z",
+  "generatedAt": "2026-02-24T07:41:40.820Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 4,
+    "implemented": 0,
     "items": [
       {
-        "id": "REQ-29",
-        "summary": "Replace the current logo image file with the newly uploaded graduation cap emblem image (Screenshot_20260224_003807_Chrome.jpg) in the frontend assets directory (frontend/public/assets/generated/logo.png)",
-        "status": "implemented",
+        "id": "REQ-41",
+        "summary": "Verify and fix the /admin route registration in App.tsx TanStack Router configuration to ensure the route is properly defined with correct path '/admin' and component reference to AdminDashboardPage",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/public/assets/generated/logo.dim_200x200.png"
+          "frontend/src/App.tsx"
         ],
-        "matchedFiles": [
-          "frontend/public/assets/generated/logo.dim_200x200.png"
-        ]
+        "matchedFiles": []
       },
       {
-        "id": "REQ-30",
-        "summary": "Update all logo image references in Layout.tsx to use the graduation cap emblem image path (frontend/public/assets/generated/logo.png)",
-        "status": "implemented",
+        "id": "REQ-42",
+        "summary": "Ensure the AdminDashboardPage component import statement in App.tsx uses the correct file path and module name from frontend/src/pages/AdminDashboardPage.tsx",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-43",
+        "summary": "Test that navigating to /admin URL renders the AdminDashboardPage component for authenticated admin users without showing 404 not found error",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-44",
+        "summary": "Verify the Admin navigation link in Layout.tsx correctly routes to /admin when clicked and is visible only to users with admin privileges",
+        "status": "missing",
         "plannedFiles": [
           "frontend/src/components/Layout.tsx"
         ],
-        "matchedFiles": [
-          "frontend/src/components/Layout.tsx"
-        ]
-      },
-      {
-        "id": "REQ-31",
-        "summary": "Update the logo image reference in SplashScreen.tsx to use the graduation cap emblem image path (frontend/public/assets/generated/logo.png)",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/SplashScreen.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/SplashScreen.tsx"
-        ]
+        "matchedFiles": []
       }
     ]
   },
@@ -50,9 +53,6 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/logo.dim_200x200.png",
-    "frontend/src/components/Layout.tsx",
-    "frontend/src/components/SplashScreen.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

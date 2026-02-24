@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 15,
+  "projectStateVersion": 23,
   "summary": "Student Vibe - A College Notes Sharing + AI Study Helper web application with premium subscription model",
   "architectural_notes": [
     "Web application built with React frontend",
@@ -9,9 +9,10 @@
     "AI integration for study helper features (summaries, quizzes, viva prep)",
     "Admin system with role-based access control for user management"
   ],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Edit Images\n- Replace the logo with the graduation cap emblem from the uploaded image (Screenshot_20260224_003807_Chrome.jpg > logo.dim_200x200.png)",
+  "known_issues": [
+    "Admin route (/admin) returns 404 not found despite being deployed in Version 9"
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-implement-user-authentication-using-internet-identity-that-supports-google-apple-and-microsoft-sign-in-options",
@@ -196,6 +197,62 @@
         "REQ-31"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-fix-the-admin-authorization-check-in-admindashboardpage-to-properly-verify-user-admin-status-using-the-usegetadminuserprofile-hook-ensuring-the-page-renders-for-authenticated-admin-users",
+      "title": "Fix the admin authorization check in AdminDashboardPage to properly verify user admin status using the useGetAdminUserProfile hook, ensuring the page renders for authenticated admin users",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-admin-navigation-link-in-layout-tsx-correctly-routes-to-admin-and-is-visible-only-to-users-with-admin-privileges-based-on-the-adminuserprofile-query-result",
+      "title": "Ensure the Admin navigation link in Layout.tsx correctly routes to /admin and is visible only to users with admin privileges based on the adminUserProfile query result",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-admin-authorization-logic-in-admindashboardpage-tsx-to-properly-handle-the-usegetadminuserprofile-hook-response-ensuring-authenticated-admin-users-can-access-the-page-by-checking-adminuserprofile-isadmin-true-with-proper-null-undefined-handling",
+      "title": "Update the admin authorization logic in AdminDashboardPage.tsx to properly handle the useGetAdminUserProfile hook response, ensuring authenticated admin users can access the page by checking adminUserProfile?.isAdmin === true with proper null/undefined handling",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-better-error-handling-and-loading-states-in-admindashboardpage-to-display-appropriate-messages-when-the-usegetadminuserprofile-query-is-loading-fails-or-returns-unexpected-data",
+      "title": "Add better error handling and loading states in AdminDashboardPage to display appropriate messages when the useGetAdminUserProfile query is loading, fails, or returns unexpected data",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-that-the-admin-route-is-correctly-registered-in-the-tanstack-router-configuration-in-app-tsx-with-the-correct-path-admin-and-component-mapping-to-admindashboardpage",
+      "title": "Verify that the /admin route is correctly registered in the TanStack Router configuration in App.tsx with the correct path '/admin' and component mapping to AdminDashboardPage",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-admin-route-component-import-path-in-app-tsx-correctly-references-the-admindashboardpage-component-from-frontend-src-pages-admindashboardpage-tsx",
+      "title": "Ensure the /admin route component import path in App.tsx correctly references the AdminDashboardPage component from frontend/src/pages/AdminDashboardPage.tsx",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-the-tanstack-router-route-definition-for-admin-includes-proper-lazy-loading-or-direct-component-reference-consistent-with-other-routes-in-the-application",
+      "title": "Verify the TanStack Router route definition for /admin includes proper lazy loading or direct component reference consistent with other routes in the application",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -333,6 +390,54 @@
       "id": "AR-25",
       "summary": "Replace logo with user-uploaded image",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Verify that the /admin route is properly registered in the TanStack Router configuration in App.tsx with correct path and component mapping to AdminDashboardPage",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Verify the backend getAdminUserProfile method correctly checks the caller's admin status and returns the appropriate profile data or error for authorization",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Verify and fix the /admin route registration in App.tsx TanStack Router configuration to ensure the route is properly defined with correct path '/admin' and component reference to AdminDashboardPage",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Ensure the AdminDashboardPage component import statement in App.tsx uses the correct file path and module name from frontend/src/pages/AdminDashboardPage.tsx",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Test that navigating to /admin URL renders the AdminDashboardPage component for authenticated admin users without showing 404 not found error",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "Verify the Admin navigation link in Layout.tsx correctly routes to /admin when clicked and is visible only to users with admin privileges",
+      "reqIds": [
+        "REQ-44"
+      ],
       "status": "pending"
     }
   ],

@@ -1,11 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the Student Vibe logo with the graduation cap emblem image throughout the application.
+**Goal:** Fix the admin dashboard route registration and accessibility issues to ensure the /admin route works correctly.
 
 **Planned changes:**
-- Replace the current logo image file with the graduation cap emblem from the uploaded screenshot
-- Update logo references in the Layout component header
-- Update logo reference in the SplashScreen component
+- Verify and fix the /admin route registration in App.tsx TanStack Router configuration
+- Ensure AdminDashboardPage component is properly imported with correct file path
+- Test that navigating to /admin renders the AdminDashboardPage without 404 errors
+- Verify the Admin navigation link in Layout.tsx routes correctly to /admin for admin users
 
-**User-visible outcome:** The Student Vibe application displays the new graduation cap emblem logo in the header navigation and splash screen.
+**User-visible outcome:** Admin users can successfully navigate to the admin dashboard via the /admin URL and the Admin navigation link without encountering route errors.

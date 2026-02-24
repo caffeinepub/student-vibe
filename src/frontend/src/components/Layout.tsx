@@ -5,15 +5,15 @@ import UserProfileDisplay from './UserProfileDisplay';
 import { BookOpen, Upload, Users, Menu, X, UserCircle, Shield } from 'lucide-react';
 import { useState } from 'react';
 import { SiCoffeescript } from 'react-icons/si';
-import { useGetAdminUserProfile } from '../hooks/useGetAdminUserProfile';
+import { useGetCallerUserProfile } from '../hooks/useGetCallerUserProfile';
 
 export default function Layout() {
   const { identity } = useInternetIdentity();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { data: adminProfile } = useGetAdminUserProfile();
+  const { data: userProfile, isLoading: profileLoading } = useGetCallerUserProfile();
   const isAuthenticated = !!identity;
-  const isAdmin = adminProfile?.isAdmin || false;
+  const isAdmin = userProfile?.isAdmin || false;
 
   const navItems = [
     { label: 'Dashboard', path: '/', icon: BookOpen },
@@ -23,7 +23,7 @@ export default function Layout() {
     { label: 'Profile', path: '/profile', icon: UserCircle },
   ];
 
-  if (isAdmin) {
+  if (isAuthenticated && isAdmin && !profileLoading) {
     navItems.push({ label: 'Admin', path: '/admin', icon: Shield });
   }
 
@@ -53,29 +53,36 @@ export default function Layout() {
 
             {isAuthenticated && (
               <nav className="hidden md:flex items-center gap-1">
-                {navItems.map((item) => (
-                  <button
-                    key={item.path}
-                    onClick={() => handleNavigation(item.path)}
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
-                  >
-                    <item.icon className="h-4 w-4" />
-                    {item.label}
-                  </button>
-                ))}
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <button
+                      key={item.path}
+                      onClick={() => handleNavigation(item.path)}
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+                    >
+                      <Icon className="h-4 w-4" />
+                      {item.label}
+                    </button>
+                  );
+                })}
               </nav>
             )}
           </div>
 
-          <div className="flex items-center gap-3">
-            {isAuthenticated && <UserProfileDisplay />}
+          <div className="flex items-center gap-4">
+            {isAuthenticated && (
+              <div className="hidden md:block">
+                <UserProfileDisplay />
+              </div>
+            )}
             <LoginButton />
             {isAuthenticated && (
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="md:hidden p-2 rounded-lg hover:bg-accent/50 transition-colors"
               >
-                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             )}
           </div>
@@ -83,58 +90,52 @@ export default function Layout() {
 
         {mobileMenuOpen && isAuthenticated && (
           <div className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur">
-            <nav className="container py-4 flex flex-col gap-2">
-              <div className="px-4 py-3 mb-2">
+            <nav className="container py-4 space-y-1">
+              <div className="mb-4 pb-4 border-b border-border/40">
                 <UserProfileDisplay />
               </div>
-              {navItems.map((item) => (
-                <button
-                  key={item.path}
-                  onClick={() => handleNavigation(item.path)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
-                >
-                  <item.icon className="h-4 w-4" />
-                  {item.label}
-                </button>
-              ))}
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <button
+                    key={item.path}
+                    onClick={() => handleNavigation(item.path)}
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+                  >
+                    <Icon className="h-5 w-5" />
+                    {item.label}
+                  </button>
+                );
+              })}
             </nav>
           </div>
         )}
       </header>
 
       <main className="flex-1">
-        {isAuthenticated ? (
-          <Outlet />
-        ) : (
-          <div className="container py-20 text-center">
-            <div className="max-w-2xl mx-auto space-y-6">
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-chart-1 to-chart-2 bg-clip-text text-transparent">
-                Welcome to Student Vibe
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Your AI-powered study companion for college notes, quizzes, and collaborative learning.
-              </p>
-              <div className="pt-4">
-                <LoginButton />
-              </div>
-            </div>
-          </div>
-        )}
+        <Outlet />
       </main>
 
-      <footer className="border-t border-border/40 bg-background/95 backdrop-blur">
-        <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Student Vibe. All rights reserved.
-          </p>
-          <a
-            href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Built with <SiCoffeescript className="h-4 w-4 text-red-500" /> using caffeine.ai
-          </a>
+      <footer className="border-t border-border/40 bg-background/95 backdrop-blur mt-auto">
+        <div className="container py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>© {new Date().getFullYear()} Student Vibe</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>Built with</span>
+              <SiCoffeescript className="h-4 w-4 text-primary" />
+              <span>using</span>
+              <a
+                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-primary hover:underline"
+              >
+                caffeine.ai
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

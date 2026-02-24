@@ -6,13 +6,13 @@ import { useGetAllUsers } from '../hooks/useGetAllUsers';
 import { useSearchUsersByEmail } from '../hooks/useSearchUsersByEmail';
 import { useSetUserPremiumStatus } from '../hooks/useSetUserPremiumStatus';
 import { useSetUserAdminStatus } from '../hooks/useSetUserAdminStatus';
-import { Shield, Search, Loader2, Crown, User, Mail, Building2, CheckCircle, XCircle } from 'lucide-react';
+import { Shield, Search, Loader2, Crown, User, Mail, Building2, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function AdminDashboardPage() {
   const { identity } = useInternetIdentity();
   const navigate = useNavigate();
-  const { data: adminProfile, isLoading: adminLoading } = useGetAdminUserProfile();
+  const { data: adminUserProfile, isLoading: profileLoading, isError, error, isFetched } = useGetAdminUserProfile();
   const { data: allUsers, isLoading: usersLoading } = useGetAllUsers();
   const [searchTerm, setSearchTerm] = useState('');
   const { data: searchResults } = useSearchUsersByEmail(searchTerm);
@@ -20,7 +20,6 @@ export default function AdminDashboardPage() {
   const setAdminStatus = useSetUserAdminStatus();
 
   const isAuthenticated = !!identity;
-  const isAdmin = adminProfile?.isAdmin || false;
 
   const displayUsers = searchTerm.trim() ? searchResults || [] : allUsers || [];
 
@@ -49,15 +48,38 @@ export default function AdminDashboardPage() {
     return null;
   }
 
-  if (adminLoading) {
+  if (profileLoading) {
     return (
       <div className="container py-20 flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <p className="ml-3 text-muted-foreground">Verifying admin access...</p>
       </div>
     );
   }
 
-  if (!isAdmin) {
+  if (isError) {
+    return (
+      <div className="container py-20">
+        <div className="max-w-2xl mx-auto text-center space-y-6">
+          <div className="p-4 rounded-full bg-destructive/10 w-20 h-20 mx-auto flex items-center justify-center">
+            <AlertCircle className="h-10 w-10 text-destructive" />
+          </div>
+          <h1 className="text-3xl font-bold text-foreground">Error Loading Admin Dashboard</h1>
+          <p className="text-lg text-muted-foreground">
+            {error?.message || 'Unable to verify admin status. Please try again.'}
+          </p>
+          <button
+            onClick={() => navigate({ to: '/' })}
+            className="px-6 py-3 rounded-lg bg-primary text-white font-medium hover:opacity-90 transition-opacity"
+          >
+            Return to Dashboard
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (isFetched && adminUserProfile?.isAdmin !== true) {
     return (
       <div className="container py-20">
         <div className="max-w-2xl mx-auto text-center space-y-6">
@@ -135,8 +157,7 @@ export default function AdminDashboardPage() {
               </thead>
               <tbody className="divide-y divide-border">
                 {displayUsers.map((user, index) => {
-                  const userPrincipal = identity?.getPrincipal().toString();
-                  const isCurrentUser = user.email === adminProfile?.email;
+                  const isCurrentUser = user.email === adminUserProfile?.email;
                   
                   return (
                     <tr key={index} className="hover:bg-muted/30 transition-colors">

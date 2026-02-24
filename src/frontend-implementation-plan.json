@@ -1,54 +1,73 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace Student Vibe logo with graduation cap emblem image",
+  "title": "Fix admin dashboard route registration and accessibility",
   "requirements": [
     {
-      "id": "REQ-29",
-      "summary": "Replace the current logo image file with the newly uploaded graduation cap emblem image in the frontend assets directory",
+      "id": "REQ-41",
+      "summary": "Verify and fix the /admin route registration in App.tsx TanStack Router configuration to ensure the route is properly defined with correct path '/admin' and component reference to AdminDashboardPage",
       "acceptanceCriteria": [
-        "The graduation cap emblem image is saved to frontend/public/assets/generated/logo.png",
-        "The image displays correctly in the app header Layout component",
-        "The image displays correctly in the SplashScreen component",
-        "The image maintains proper dimensions and aspect ratio across all logo locations"
+        "The /admin route is registered in the TanStack Router routes array in App.tsx",
+        "The route path is exactly '/admin'",
+        "The route component correctly references AdminDashboardPage from frontend/src/pages/AdminDashboardPage.tsx",
+        "The route definition follows the same pattern as other routes in the application (dashboard, profile, etc.)"
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/logo.dim_200x200.png",
-          "operation": "create",
-          "description": "Save the graduation cap emblem image from Screenshot_20260224_003807_Chrome.jpg as logo.dim_200x200.png. This image will be used as the new Student Vibe logo throughout the application, replacing the existing logo image."
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify that AdminDashboardPage is imported at the top of the file with the correct path 'frontend/src/pages/AdminDashboardPage.tsx'. Ensure the /admin route is registered in the TanStack Router routes array with path='/admin' and element={<AdminDashboardPage />}, following the same pattern as existing routes like dashboard, profile, and groups. If the route is missing or incorrectly configured, add or fix it in the routes array within the router configuration."
         }
       ]
     },
     {
-      "id": "REQ-30",
-      "summary": "Update all logo image references in Layout.tsx to use the graduation cap emblem image path",
+      "id": "REQ-42",
+      "summary": "Ensure the AdminDashboardPage component import statement in App.tsx uses the correct file path and module name from frontend/src/pages/AdminDashboardPage.tsx",
       "acceptanceCriteria": [
-        "Layout component header displays the graduation cap emblem",
-        "Logo is properly sized and positioned in the navigation header",
-        "Logo remains responsive on mobile and desktop viewports"
+        "AdminDashboardPage is imported at the top of App.tsx",
+        "Import path matches frontend/src/pages/AdminDashboardPage.tsx",
+        "Import uses correct casing and file extension (.tsx)",
+        "No import errors or module resolution issues"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify the import statement for AdminDashboardPage at the top of App.tsx. Ensure it reads 'import AdminDashboardPage from './pages/AdminDashboardPage';' with correct relative path, casing matching the actual filename, and no TypeScript/ESLint errors. If the import is missing, add it alongside other page imports. If the import path is incorrect, fix it to match the actual file location."
+        }
+      ]
+    },
+    {
+      "id": "REQ-43",
+      "summary": "Test that navigating to /admin URL renders the AdminDashboardPage component for authenticated admin users without showing 404 not found error",
+      "acceptanceCriteria": [
+        "Visiting /admin in the browser loads the AdminDashboardPage",
+        "No 404 or route not found errors appear",
+        "Admin users with isAdmin=true can access the page",
+        "Non-admin users see appropriate authorization message"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure the /admin route is properly wired into the TanStack Router configuration so that navigating to /admin in the browser renders the AdminDashboardPage component. Verify that the route definition includes the correct path and element props, and that it is included in the routes array passed to the router. The AdminDashboardPage itself already contains authorization logic to restrict access to admin users, so no additional guards are needed in the route definition."
+        }
+      ]
+    },
+    {
+      "id": "REQ-44",
+      "summary": "Verify the Admin navigation link in Layout.tsx correctly routes to /admin when clicked and is visible only to users with admin privileges",
+      "acceptanceCriteria": [
+        "Admin link appears in Layout navigation menu for admin users",
+        "Clicking the Admin link navigates to /admin route",
+        "Link is hidden for non-admin users",
+        "Link uses proper TanStack Router Link component for navigation"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Layout.tsx",
           "operation": "modify",
-          "description": "Update the logo image reference in the Layout header to use the graduation cap emblem at frontend/public/assets/generated/logo.dim_200x200.png. Ensure the image src attribute points to the correct path and that the logo maintains proper sizing and positioning in both desktop and mobile navigation headers without modifying the header structure or navigation menu."
-        }
-      ]
-    },
-    {
-      "id": "REQ-31",
-      "summary": "Update the logo image reference in SplashScreen.tsx to use the graduation cap emblem image path",
-      "acceptanceCriteria": [
-        "SplashScreen displays the graduation cap emblem during app startup",
-        "Logo animation effects remain functional with the new image",
-        "Logo is properly centered and sized in the splash screen"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/SplashScreen.tsx",
-          "operation": "modify",
-          "description": "Update the logo image reference in the SplashScreen component to use the graduation cap emblem at frontend/public/assets/generated/logo.dim_200x200.png. Ensure the image src attribute points to the correct path while preserving all existing animation logic, timing, and centering behavior without modifying the animation phases or onComplete callback."
+          "description": "Verify that the Admin navigation link is present in the Layout navigation menu and conditionally rendered based on userProfile?.isAdmin. Ensure the link uses the TanStack Router Link component with to='/admin' prop. If the link is missing, add it to the navigation menu alongside other links (Dashboard, Browse, etc.) with conditional rendering: {userProfile?.isAdmin && <Link to='/admin'>Admin</Link>}. Ensure the link is visible only when the user profile has isAdmin set to true."
         }
       ]
     }
