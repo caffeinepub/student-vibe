@@ -1,0 +1,61 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-24T07:41:40.820Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 0,
+    "items": [
+      {
+        "id": "REQ-41",
+        "summary": "Verify and fix the /admin route registration in App.tsx TanStack Router configuration to ensure the route is properly defined with correct path '/admin' and component reference to AdminDashboardPage",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-42",
+        "summary": "Ensure the AdminDashboardPage component import statement in App.tsx uses the correct file path and module name from frontend/src/pages/AdminDashboardPage.tsx",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-43",
+        "summary": "Test that navigating to /admin URL renders the AdminDashboardPage component for authenticated admin users without showing 404 not found error",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-44",
+        "summary": "Verify the Admin navigation link in Layout.tsx correctly routes to /admin when clicked and is visible only to users with admin privileges",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/Layout.tsx"
+        ],
+        "matchedFiles": []
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

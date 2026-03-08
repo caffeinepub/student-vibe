@@ -1,0 +1,91 @@
+{
+  "kind": "build_request",
+  "title": "Fix admin dashboard route registration and accessibility",
+  "projectName": "Student Vibe",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-41",
+      "text": "Verify and fix the /admin route registration in App.tsx TanStack Router configuration to ensure the route is properly defined with correct path '/admin' and component reference to AdminDashboardPage",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "hello start a fix admin deshbord"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The /admin route is registered in the TanStack Router routes array in App.tsx",
+        "The route path is exactly '/admin'",
+        "The route component correctly references AdminDashboardPage from frontend/src/pages/AdminDashboardPage.tsx",
+        "The route definition follows the same pattern as other routes in the application (dashboard, profile, etc.)"
+      ]
+    },
+    {
+      "id": "REQ-42",
+      "text": "Ensure the AdminDashboardPage component import statement in App.tsx uses the correct file path and module name from frontend/src/pages/AdminDashboardPage.tsx",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ]
+      },
+      "acceptanceCriteria": [
+        "AdminDashboardPage is imported at the top of App.tsx",
+        "Import path matches frontend/src/pages/AdminDashboardPage.tsx",
+        "Import uses correct casing and file extension (.tsx)",
+        "No import errors or module resolution issues"
+      ]
+    },
+    {
+      "id": "REQ-43",
+      "text": "Test that navigating to /admin URL renders the AdminDashboardPage component for authenticated admin users without showing 404 not found error",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Visiting /admin in the browser loads the AdminDashboardPage",
+        "No 404 or route not found errors appear",
+        "Admin users with isAdmin=true can access the page",
+        "Non-admin users see appropriate authorization message"
+      ]
+    },
+    {
+      "id": "REQ-44",
+      "text": "Verify the Admin navigation link in Layout.tsx correctly routes to /admin when clicked and is visible only to users with admin privileges",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin link appears in Layout navigation menu for admin users",
+        "Clicking the Admin link navigates to /admin route",
+        "Link is hidden for non-admin users",
+        "Link uses proper TanStack Router Link component for navigation"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify the backend admin authorization logic",
+    "Do not change the AdminDashboardPage component implementation",
+    "Maintain consistency with existing TanStack Router patterns in App.tsx",
+    "Preserve all existing route definitions"
+  ],
+  "nonGoals": [
+    "Adding new admin features beyond routing fixes",
+    "Modifying admin authorization checks in AdminDashboardPage",
+    "Changing the admin dashboard UI or functionality",
+    "Adding new backend methods or API endpoints"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
